@@ -20,14 +20,40 @@ function init(){
 			transparent: true 
 		}); 
 	
+	var styleDescription = { 
+		propName: "name",
+		styles: {
+			"Uinkaret": {
+				fillColor: "#0000FF"
+			}, "Springerville": {
+				fillColor: "#B700C4"
+			}, "Sentinel": {
+				fillColor: "#FF0088"
+			}, "San Francisco": {
+				fillColor: "#FF0051"
+			}, "Pinacate": {
+				fillColor: "#FFC800"
+			}, "San Bernardino": {
+				fillColor: "#FF8C00"
+			}
+		},
+		"default": {
+			stroke: false,
+			fill: true,
+			fillOpacity: 0.6 
+		}
+	};
+	
 	/* WFS GeoJSON layer example: */
-	var wfsLayer = new L.GeoJSON.WFS("http://opengis.azexperience.org/geoserver/wfs", "vae:azhistoricmines", {
-		pointToLayer: function(latlng) { return new L.CircleMarker(latlng); },
-		popupObj: new JadeContent("templates/example.jade"),
-		popupOptions: { maxWidth: 530, centered: false },
-		hoverFld: "name"
+	var wfsLayer = new L.GeoJSON.WFS("http://opengis.azexperience.org/geoserver/wfs", "vae:azvolcanics", {		
+		popupObj: new JadeContent("templates/volcanics.jade"),
+		popupOptions: { maxWidth: 530, centered: true },
+		hoverFld: "name",
+		hoverColor: "#FFFF00",
+		wfsVersion: "1.0.0",
+		filteredStyles: styleDescription
 	}); 
 	
 	var center = new L.LatLng(34.1618, -111.53332);
-	map.setView(center, 7).addLayer(natGeoLayer);
+	map.setView(center, 7).addLayer(natGeoLayer).addLayer(wfsLayer);
 }
