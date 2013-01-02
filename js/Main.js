@@ -2,8 +2,8 @@ function init(){
 	var map = new L.Map("map");
 	
 	/* Tilestream Layer example: */
-	var historicUrl = "/tiles/v2/azHistoric1880/{z}/{x}/{y}.png",
-		historicLayer = new L.TileLayer(historicUrl, {maxZoom: 10}); 
+		var landshadeUrl = "/tiles/v2/landShade/{z}/{x}/{y}.png",
+		landshade = new L.TileLayer(landshadeUrl, {maxZoom: 12}); 
 	
 	/* ESRI tiled service example: */
 	//var natGeoLayer = new L.TileLayer.ESRI("http://services.arcgisonline.com/ArcGIS/rest/services/NatGeo_World_Map/MapServer");
@@ -62,5 +62,5 @@ function init(){
 	}); 
 	
 	var center = new L.LatLng(34.1618, -111.53332);
-	map.setView(center, 7).addLayer(cloudmade).addLayer(wfsLayer);
+	map.setView(center, 7).addLayer(landshade).addLayer(wfsLayer);
 }
